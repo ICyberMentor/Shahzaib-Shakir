@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Portfolio | Offensive Security Professional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Matrix Background Animation */
+        .matrix-bg {
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .matrix-bg::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #00ff00 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #00ff00 0%, transparent 50%);
+            background-size: 100px 100px;
+            animation: matrix-float 20s ease-in-out infinite;
+            opacity: 0.03;
+            z-index: -1;
+        }
+
+        @keyframes matrix-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Terminal Glow Effect */
+        .terminal-glow {
+            box-shadow: 
+                0 0 20px rgba(0, 255, 0, 0.1),
+                inset 0 0 20px rgba(0, 255, 0, 0.05);
+        }
+
+        /* Neon Border Effect */
+        .neon-border {
+            border: 1px solid #00ff00;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 0, 0.3),
+                inset 0 0 10px rgba(0, 255, 0, 0.1);
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-anim-1 0.5s infinite linear alternate-reverse;
+            color: #ff0000;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-anim-2 1s infinite linear alternate-reverse;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            25% { clip: rect(12px, 9999px, 59px, 0); }
+            50% { clip: rect(85px, 9999px, 140px, 0); }
+            75% { clip: rect(63px, 9999px, 21px, 0); }
+            100% { clip: rect(26px, 9999px, 99px, 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 119px, 0); }
+            25% { clip: rect(52px, 9999px, 74px, 0); }
+            50% { clip: rect(79px, 9999px, 85px, 0); }
+            75% { clip: rect(75px, 9999px, 5px, 0); }
+            100% { clip: rect(67px, 9999px, 61px, 0); }
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            10% { transform: skew(-2deg); }
+            20% { transform: skew(1deg); }
+            30% { transform: skew(-1deg); }
+            40% { transform: skew(2deg); }
+            50% { transform: skew(-1deg); }
+            60% { transform: skew(0deg); }
+            70% { transform: skew(1deg); }
+            80% { transform: skew(-2deg); }
+            90% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        /* Typing Animation */
+        .typing-animation {
+            border-right: 2px solid #00ff00;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff00; }
+        }
+
+        /* Scan Line Effect */
+        .scan-line {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scan-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            animation: scan 2s infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Pulse Glow */
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from {
+                box-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+            }
+        }
+
+        /* Social Media Glitch Effect */
+        .social-glitch {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .social-glitch:hover {
+            animation: social-glitch-anim 0.3s ease-in-out;
+        }
+
+        .social-glitch::before {
+            content: attr(data-social);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #00ff00;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            border: 1px solid #00ff00;
+        }
+
+        .social-glitch:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes social-glitch-anim {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-2px); }
+            40% { transform: translateX(2px); }
+            60% { transform: translateX(-1px); }
+            80% { transform: translateX(1px); }
+        }
+
+        /* Root Access Button */
+        .root-access {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+            .root-access {
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        .root-access:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Smooth scrolling for entire page */
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            overflow-x: hidden;
+            height: auto;
+        }
+
+        /* Section spacing and scroll snap */
+        .portfolio-section {
+            scroll-margin-top: 80px; /* Account for fixed nav */
+            width: 100%;
+            position: relative;
+        }
+
+        /* Hero section full height */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        /* Content sections proper spacing */
+        .content-section {
+            min-height: auto;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .content-section {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+        }
+
+        /* Ensure all sections are scrollable */
+        #portfolio-section {
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        /* Navigation active state */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: #00ff00 !important;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #00ff00;
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-pulse {
+            from { box-shadow: 0 0 5px #00ff00; }
+            to { box-shadow: 0 0 15px #00ff00; }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(0, 255, 0, 0.1);
+            z-index: 1001;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive text scaling */
+        @media (max-width: 640px) {
+            .glitch::before,
+            .glitch::after {
+                font-size: inherit;
+            }
+        }
+
+        /* Mobile menu improvements */
+        @media (max-width: 768px) {
+            #mobile-menu {
+                background: rgba(0, 0, 0, 0.95);
+                border: 1px solid rgba(0, 255, 0, 0.3);
+                border-radius: 0.5rem;
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+        }
+
+        /* Responsive grid improvements */
+        @media (max-width: 640px) {
+            .grid {
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .grid {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Table responsive improvements */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.75rem;
+            }
+            
+            th, td {
+                padding: 0.5rem !important;
+            }
+        }
+
+        /* Form improvements for mobile */
+        @media (max-width: 640px) {
+            input, textarea, select {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        /* Article expansion styles */
+        .article-card {
+            transition: all 0.5s ease;
+        }
+
+        .article-content {
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive article layout */
+        @media (max-width: 1023px) {
+            .article-card.lg\:col-span-2 {
+                grid-column: span 1 !important;
+            }
+        }
+
+        /* Article content styling */
+        .article-content .prose {
+            line-height: 1.6;
+        }
+
+        .article-content h4 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1rem;
+        }
+
+        .article-content ul {
+            margin-bottom: 1rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Smooth transitions for article expansion */
+        .article-card {
+            transform-origin: top left;
+        }
+
+        .article-card.expanded {
+            transform: scale(1.02);
+        }
+
+        /* Loading animation for article content */
+        @keyframes loading-dots {
+            0%, 20% { opacity: 0; }
+            50% { opacity: 1; }
+            80%, 100% { opacity: 0; }
+        }
+
+        .loading-dots::after {
+            content: '...';
+            animation: loading-dots 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-black text-green-400 matrix-bg">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scroll-progress"></div>
+    </div>
+
+    <!-- Root Access Button (Hidden Admin Entry) -->
+    <button onclick="showAdminLogin()" class="root-access neon-border bg-black/80 p-2 rounded-full hover:bg-green-500/20 transition-all" title="Root Access">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zm4.64-1.96l3.54 3.54c.78.78 2.05.78 2.83 0l7.07-7.07c.78-.78.78-2.05 0-2.83-.78-.78-2.05-.78-2.83 0L12 9.34 6.75 4.09c-.78-.78-2.05-.78-2.83 0s-.78 2.05 0 2.83l2.72 2.72z"/>
+        </svg>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="scrollToTop()" class="scroll-to-top neon-border bg-black/80 p-3 rounded-full hover:bg-green-500/20 transition-all" title="Back to Top">
+        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <!-- Portfolio Section -->
+    <div id="portfolio-section">
+        <!-- Navigation -->
+        <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-sm border-b border-green-500/30 z-50">
+            <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+                <div class="flex justify-between items-center">
+                    <div class="text-lg sm:text-xl font-bold text-green-400">
+                        <span class="text-red-500">root@</span>Shahzaib Shakir<span class="text-green-400">:~$</span>
+                    </div>
+                    <div class="hidden md:flex space-x-6 lg:space-x-8">
+                        <a href="#about" class="nav-link hover:text-green-300 transition-colors text-sm lg:text-base">./about</a>
+                        <a href="#projects" class="nav-link hover:text-green-300 transition-colors text-sm lg:text-base">./projects</a>
+                        <a href="#articles" class="nav-link hover:text-green-300 transition-colors text-sm lg:text-base">./articles</a>
+                        <a href="#contact" class="nav-link hover:text-green-300 transition-colors text-sm lg:text-base">./contact</a>
+                    </div>
+                    <button class="md:hidden text-green-400 p-2" onclick="toggleMobileMenu()">
+                        <span id="menu-icon" class="text-xl">☰</span>
+                    </button>
+                </div>
+                <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 pb-4">
+                    <a href="#about" class="nav-link block hover:text-green-300 transition-colors py-2">./about</a>
+                    <a href="#projects" class="nav-link block hover:text-green-300 transition-colors py-2">./projects</a>
+                    <a href="#articles" class="nav-link block hover:text-green-300 transition-colors py-2">./articles</a>
+                    <a href="#contact" class="nav-link block hover:text-green-300 transition-colors py-2">./contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section pt-20 px-4 sm:px-6">
+            <div class="container mx-auto text-center">
+                <div class="terminal-glow bg-black/80 p-4 sm:p-6 lg:p-8 rounded-lg border border-green-500/50 max-w-5xl mx-auto">
+                    <div class="text-left mb-4 sm:mb-6 text-xs sm:text-sm overflow-x-auto">
+                        <span class="text-red-500">┌──(</span><span class="text-blue-400">user</span><span class="text-white">㉿</span><span class="text-blue-400">kali</span><span class="text-red-500">)-[</span><span class="text-white">~/portfolio</span><span class="text-red-500">]</span>
+                        <br>
+                        <span class="text-red-500">└─$</span> <span class="typing-animation">whoami</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 glitch leading-tight" data-text="CYBERSEC EXPERT">
+                        <span class="text-green-400">Cyber</span> <span class="text-red-500">Mentor</span>
+                    </h1>
+                    <p class="text-sm sm:text-base lg:text-xl mb-6 text-gray-300 px-2">
+                        > Offensive Security Professional | Penetration Tester | Red Team Operator
+                    </p>
+                    <div class="text-left bg-gray-900/50 p-3 sm:p-4 rounded border border-green-500/30 mb-6 text-sm sm:text-base">
+                        <p class="text-green-400">[+] Specializing in:</p>
+                        <p class="text-white ml-2 sm:ml-4">• Network Penetration Testing</p>
+                        <p class="text-white ml-2 sm:ml-4">• Web Application Security</p>
+                        <p class="text-white ml-2 sm:ml-4">• Red Team Operations</p>
+                        <p class="text-white ml-2 sm:ml-4">• Vulnerability Assessment</p>
+                    </div>
+                    <button onclick="scrollToSection('about')" class="neon-border bg-transparent px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded hover:bg-green-500/20 transition-all scan-line text-sm sm:text-base">
+                        INITIALIZE_PORTFOLIO.exe
+                    </button>
+                    
+                    <!-- Social Media Links -->
+                    <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-green-500/30">
+                        <p class="text-green-400 text-xs sm:text-sm mb-4">[SOCIAL_NETWORKS] > Establishing connections...</p>
+                        <div class="flex justify-center flex-wrap gap-3 sm:gap-4 lg:gap-6">
+                            <a href="https://github.com/ICyberMentor" target="_blank" rel="noopener noreferrer" 
+                               class="social-icon social-glitch neon-border bg-gray-900/50 p-2 sm:p-3 rounded-lg hover:bg-green-500/20 pulse-glow" 
+                               data-social="GITHUB" title="GitHub - Code Repository">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            
+                            <a href="https://www.linkedin.com/in/shahzaib-shakir1/" target="_blank" rel="noopener noreferrer" 
+                               class="social-icon social-glitch neon-border bg-gray-900/50 p-2 sm:p-3 rounded-lg hover:bg-blue-500/20 pulse-glow" 
+                               data-social="LINKEDIN" title="LinkedIn - Professional Network">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                            
+                            <a href="https://x.com/I_Cyber_Mentor?t=CeIH6UeR-rQFif5AoGRDhg&s=09" target="_blank" rel="noopener noreferrer" 
+                               class="social-icon social-glitch neon-border bg-gray-900/50 p-2 sm:p-3 rounded-lg hover:bg-white/20 pulse-glow" 
+                               data-social="X" title="X - Security Updates">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            
+                            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" 
+                               class="social-icon social-glitch neon-border bg-gray-900/50 p-2 sm:p-3 rounded-lg hover:bg-purple-500/20 pulse-glow" 
+                               data-social="DISCORD" title="Discord - Security Community">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/>
+                                </svg>
+                            </a>
+                            
+                            <a href="https://www.instagram.com/i_cyber_mentor?igsh=Z3VkbzcxNjlqNTJ2" target="_blank" rel="noopener noreferrer" 
+                               class="social-icon social-glitch neon-border bg-gray-900/50 p-2 sm:p-3 rounded-lg hover:bg-pink-500/20 pulse-glow" 
+                               data-social="INSTAGRAM" title="Instagram - Security Insights">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="content-section portfolio-section border-t border-green-500/30">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">
+                    <span class="text-red-500">root@about:</span><span class="text-green-400">~$ cat profile.txt</span>
+                </h2>
+                <div class="grid lg:grid-cols-3 gap-8 lg:gap-12 items-center">
+                    <!-- Profile Picture Section -->
+                    <div class="flex justify-center lg:justify-start order-1 lg:order-1">
+                        <div class="relative">
+                            <!-- Outer rotating ring -->
+                            <div class="absolute inset-0 rounded-full border-2 border-green-500/50 animate-spin" style="animation-duration: 20s;"></div>
+                            
+                            <!-- Middle pulsing ring -->
+                            <div class="absolute inset-2 rounded-full border border-red-500/30 pulse-glow"></div>
+                            
+                            <!-- Inner frame -->
+                            <div class="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full border-4 border-green-400/70 overflow-hidden bg-gray-800/50 backdrop-blur-sm">
+                                <!-- Placeholder for profile picture -->
+                                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+                                    <div class="text-center">
+                                        <div class="text-2xl sm:text-3xl lg:text-4xl mb-2">👤</div>
+                                        <div class="text-green-400 text-xs font-mono">[PHOTO_UPLOAD]</div>
+                                        <div class="text-gray-500 text-xs">Coming Soon...</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Scanning line effect -->
+                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-70 animate-pulse" style="animation-duration: 3s;"></div>
+                            </div>
+                            
+                            <!-- Corner brackets for cyberpunk effect -->
+                            <div class="absolute -top-2 -left-2 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-t-2 border-green-400"></div>
+                            <div class="absolute -top-2 -right-2 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-t-2 border-green-400"></div>
+                            <div class="absolute -bottom-2 -left-2 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-b-2 border-green-400"></div>
+                            <div class="absolute -bottom-2 -right-2 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-b-2 border-green-400"></div>
+                            
+                            <!-- Status indicator -->
+                            <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-black text-xs px-2 sm:px-3 py-1 rounded-full font-bold">
+                                ONLINE
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Text Section -->
+                    <div class="lg:col-span-2 order-2 lg:order-2">
+                        <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30">
+                            <div class="text-green-400 mb-4 text-sm sm:text-base">[PROFILE_DATA]</div>
+                            <p class="text-gray-300 mb-4 text-sm sm:text-base">
+                                Passionate cybersecurity professional with 2+ years of experience in offensive security operations. 
+                                Specialized in identifying vulnerabilities and strengthening digital defenses through ethical hacking methodologies.
+                            </p>
+                            <p class="text-gray-300 mb-4 text-sm sm:text-base">
+                                My mission is to stay ahead of threat actors by thinking like them, using cutting-edge tools and techniques 
+                                to protect organizations from evolving cyber threats.
+                            </p>
+                            <div class="text-green-400 mt-6 text-sm sm:text-base">
+                                <p>[STATUS]: Currently available for consulting</p>
+                                <p>[CLEARANCE]: Security+ Certified</p>
+                                <p>[LOCATION]: Remote/Global</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="lg:col-span-3 order-3 lg:order-3 mt-8 lg:mt-0">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="neon-border bg-gray-900/30 p-4 rounded">
+                                <h3 class="text-green-400 font-bold mb-2 text-sm sm:text-base">TECHNICAL_ARSENAL</h3>
+                                <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+                                    <span class="text-white">• Kali Linux</span>
+                                    <span class="text-white">• Metasploit</span>
+                                    <span class="text-white">• Burp Suite</span>
+                                    <span class="text-white">• Nmap</span>
+                                    <span class="text-white">• Wireshark</span>
+                                    <span class="text-white">• OWASP ZAP</span>
+                                    <span class="text-white">• Nuclei</span>
+                                    <span class="text-white">• Nessus</span>
+                                    <span class="text-white">• Nikto</span>
+                                    <span class="text-white">• Python Scripting</span>
+                                </div>
+                            </div>
+                            <div class="neon-border bg-gray-900/30 p-4 rounded">
+                                <h3 class="text-green-400 font-bold mb-2 text-sm sm:text-base">CERTIFICATIONS</h3>
+                                <div class="space-y-1 text-xs sm:text-sm">
+                                    <p class="text-white">🏆 CNSP - Certified Network Security Professional/p>
+                                    <p class="text-white">🏆 CEH - Certified Ethical Hacker</p>
+                                    <p class="text-white">🏆 CC - Certified in Cyber Security</p>
+                                    <p class="text-white">🏆 Cisco Certified Ethical Hacker</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section portfolio-section border-t border-green-500/30">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">
+                    <span class="text-red-500">root@projects:</span><span class="text-green-400">~$ ls -la ./exploits/</span>
+                </h2>
+                <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+                    <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-red-500/50 transition-all">
+                        <div class="text-red-500 text-xs sm:text-sm mb-2">[CLASSIFIED]</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Corporate Network Pentest</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Comprehensive penetration test of Fortune 5+ company infrastructure. 
+                            Identified 15 critical vulnerabilities including privilege escalation paths.
+                        </p>
+                        <div class="text-xs text-green-400 flex flex-wrap gap-2">
+                            <span class="bg-red-900/50 px-2 py-1 rounded">CRITICAL</span>
+                            <span class="bg-yellow-900/50 px-2 py-1 rounded">NETWORK</span>
+                        </div>
+                    </div>
+
+                    <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-red-500/50 transition-all">
+                        <div class="text-yellow-500 text-xs sm:text-sm mb-2">[PUBLIC]</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Custom Payload Generator</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Python-based tool for generating obfuscated payloads to bypass modern AV solutions. 
+                            Features multiple encoding techniques and evasion methods.
+                        </p>
+                        <div class="text-xs text-green-400 flex flex-wrap gap-2">
+                            <span class="bg-blue-900/50 px-2 py-1 rounded">PYTHON</span>
+                            <span class="bg-purple-900/50 px-2 py-1 rounded">EVASION</span>
+                        </div>
+                    </div>
+
+                    <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-red-500/50 transition-all">
+                        <div class="text-green-500 text-xs sm:text-sm mb-2">[OPEN_SOURCE]</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Web App Vulnerability Scanner</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Automated scanner for detecting OWASP Top 10 vulnerabilities. 
+                            Built with multi-threading support and detailed reporting capabilities.
+                        </p>
+                        <div class="text-xs text-green-400 flex flex-wrap gap-2">
+                            <span class="bg-green-900/50 px-2 py-1 rounded">WEBAPP</span>
+                            <span class="bg-orange-900/50 px-2 py-1 rounded">SCANNER</span>
+                        </div>
+                    </div>
+
+                    <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-red-500/50 transition-all">
+                        <div class="text-red-500 text-xs sm:text-sm mb-2">[CONFIDENTIAL]</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Red Team Exercise</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Multi-phase red team engagement simulating APT attack scenarios. 
+                            Successfully compromised target environment within 72 hours.
+                        </p>
+                        <div class="text-xs text-green-400 flex flex-wrap gap-2">
+                            <span class="bg-red-900/50 px-2 py-1 rounded">RED_TEAM</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded">APT</span>
+                        </div>
+                    </div>
+
+                    <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-red-500/50 transition-all">
+                        <div class="text-blue-500 text-xs sm:text-sm mb-2">[RESEARCH]</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">IoT Device Exploitation</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Research project focusing on firmware analysis and exploitation of IoT devices. 
+                            Discovered zero-day vulnerabilities in popular smart home products.
+                        </p>
+                        <div class="text-xs text-green-400 flex flex-wrap gap-2">
+                            <span class="bg-indigo-900/50 px-2 py-1 rounded">IOT</span>
+                            <span class="bg-red-900/50 px-2 py-1 rounded">0-DAY</span>
+                        </div>
+                    </div>
+
+                    <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-red-500/50 transition-all">
+                        <div class="text-purple-500 text-xs sm:text-sm mb-2">[TOOL]</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Steganography Toolkit</h3>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Advanced steganography suite for hiding data in various file formats. 
+                            Includes encryption and compression for covert communications.
+                        </p>
+                        <div class="text-xs text-green-400 flex flex-wrap gap-2">
+                            <span class="bg-purple-900/50 px-2 py-1 rounded">STEGANOGRAPHY</span>
+                            <span class="bg-gray-700 px-2 py-1 rounded">COVERT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Section -->
+        <section id="articles" class="content-section portfolio-section border-t border-green-500/30">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">
+                    <span class="text-red-500">root@articles:</span><span class="text-green-400">~$ cat research_papers.log</span>
+                </h2>
+                <div class="grid lg:grid-cols-2 gap-6 lg:gap-8" id="articles-container">
+                    <article class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-yellow-500/50 transition-all article-card" data-article="1">
+                        <div class="text-yellow-500 text-xs sm:text-sm mb-2">[2024-01-15] PUBLISHED</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Advanced Persistent Threats: Detection and Mitigation</h3>
+                        <p class="text-gray-300 text-sm mb-4 article-preview">
+                            Deep dive into APT tactics, techniques, and procedures. Analysis of recent campaigns 
+                            and effective defense strategies for enterprise environments.
+                        </p>
+                        
+                        <!-- Expanded Content -->
+                        <div class="article-content hidden">
+                            <div class="border-t border-green-500/30 pt-4 mb-4">
+                                <div class="text-green-400 text-sm mb-3">[ARTICLE_CONTENT] Loading...</div>
+                            </div>
+                            
+                            <div class="prose prose-invert max-w-none text-sm sm:text-base">
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Introduction</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Advanced Persistent Threats (APTs) represent one of the most sophisticated and dangerous categories of cyber attacks in today's digital landscape. Unlike traditional malware or opportunistic attacks, APTs are characterized by their stealth, persistence, and targeted nature.
+                                </p>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Understanding APT Tactics</h4>
+                                <p class="text-gray-300 mb-4">
+                                    APT groups employ a multi-stage approach to infiltrate and maintain presence within target networks:
+                                </p>
+                                <ul class="text-gray-300 mb-4 ml-4 space-y-2">
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Initial Reconnaissance and Target Selection</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Spear-phishing and Social Engineering</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Lateral Movement and Privilege Escalation</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Data Exfiltration and Persistence</li>
+                                </ul>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Detection Strategies</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Effective APT detection requires a multi-layered approach combining behavioral analysis, threat intelligence, and advanced monitoring techniques. Organizations must implement comprehensive logging, network segmentation, and continuous monitoring to identify suspicious activities.
+                                </p>
+                                
+                                <div class="bg-black/50 border border-red-500/30 p-4 rounded mb-4">
+                                    <p class="text-red-400 text-sm">
+                                        <span class="font-bold">[SECURITY_TIP]</span><br>
+                                        Implement zero-trust architecture and assume breach mentality for effective APT defense.
+                                    </p>
+                                </div>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Mitigation Techniques</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Successful APT mitigation involves proactive defense measures, incident response planning, and continuous security awareness training. Regular penetration testing and red team exercises help identify vulnerabilities before attackers do.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-green-400">12 min read • 2.3k views</span>
+                            <button onclick="toggleArticle(1)" class="text-green-400 hover:text-green-300 text-sm article-toggle">READ_MORE >></button>
+                        </div>
+                    </article>
+
+                    <article class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-yellow-500/50 transition-all article-card" data-article="2">
+                        <div class="text-yellow-500 text-xs sm:text-sm mb-2">[2024-01-08] PUBLISHED</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Zero-Day Exploitation in Modern Web Applications</h3>
+                        <p class="text-gray-300 text-sm mb-4 article-preview">
+                            Comprehensive guide to identifying and exploiting zero-day vulnerabilities in web applications. 
+                            Includes practical examples and remediation techniques.
+                        </p>
+                        
+                        <!-- Expanded Content -->
+                        <div class="article-content hidden">
+                            <div class="border-t border-green-500/30 pt-4 mb-4">
+                                <div class="text-green-400 text-sm mb-3">[ARTICLE_CONTENT] Loading...</div>
+                            </div>
+                            
+                            <div class="prose prose-invert max-w-none text-sm sm:text-base">
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">The Zero-Day Landscape</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Zero-day vulnerabilities represent the holy grail of cybersecurity research and exploitation. These previously unknown security flaws provide attackers with powerful tools for bypassing traditional security measures.
+                                </p>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Common Vulnerability Classes</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Modern web applications are susceptible to various zero-day vulnerability types:
+                                </p>
+                                <ul class="text-gray-300 mb-4 ml-4 space-y-2">
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Remote Code Execution (RCE)</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>SQL Injection Variants</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Authentication Bypass</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Deserialization Attacks</li>
+                                </ul>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Exploitation Methodology</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Successful zero-day exploitation requires systematic approach including reconnaissance, vulnerability discovery, proof-of-concept development, and weaponization. Ethical hackers must understand these processes to better defend against them.
+                                </p>
+                                
+                                <div class="bg-black/50 border border-yellow-500/30 p-4 rounded mb-4">
+                                    <p class="text-yellow-400 text-sm">
+                                        <span class="font-bold">[ETHICAL_NOTE]</span><br>
+                                        Always follow responsible disclosure practices when discovering vulnerabilities.
+                                    </p>
+                                </div>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Defense Strategies</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Protecting against zero-day exploits requires defense-in-depth strategies, including Web Application Firewalls (WAF), runtime application self-protection (RASP), and behavioral analysis systems.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-green-400">18 min read • 4.1k views</span>
+                            <button onclick="toggleArticle(2)" class="text-green-400 hover:text-green-300 text-sm article-toggle">READ_MORE >></button>
+                        </div>
+                    </article>
+
+                    <article class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-yellow-500/50 transition-all article-card" data-article="3">
+                        <div class="text-yellow-500 text-xs sm:text-sm mb-2">[2023-12-22] PUBLISHED</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Building an Effective Red Team Program</h3>
+                        <p class="text-gray-300 text-sm mb-4 article-preview">
+                            Strategic approach to establishing red team operations within organizations. 
+                            Covers team structure, methodologies, and success metrics.
+                        </p>
+                        
+                        <!-- Expanded Content -->
+                        <div class="article-content hidden">
+                            <div class="border-t border-green-500/30 pt-4 mb-4">
+                                <div class="text-green-400 text-sm mb-3">[ARTICLE_CONTENT] Loading...</div>
+                            </div>
+                            
+                            <div class="prose prose-invert max-w-none text-sm sm:text-base">
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Red Team Fundamentals</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Red teaming goes beyond traditional penetration testing by simulating real-world adversary tactics, techniques, and procedures (TTPs) to test an organization's detection and response capabilities.
+                                </p>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Team Structure and Roles</h4>
+                                <p class="text-gray-300 mb-4">
+                                    An effective red team requires diverse skill sets and clear role definitions:
+                                </p>
+                                <ul class="text-gray-300 mb-4 ml-4 space-y-2">
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Red Team Lead - Strategy and coordination</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Infrastructure Specialist - C2 and tooling</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Social Engineer - Human element attacks</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Payload Developer - Custom tool creation</li>
+                                </ul>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Engagement Methodology</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Red team engagements follow structured methodologies like MITRE ATT&CK framework, ensuring comprehensive coverage of attack vectors while maintaining operational security and avoiding detection.
+                                </p>
+                                
+                                <div class="bg-black/50 border border-blue-500/30 p-4 rounded mb-4">
+                                    <p class="text-blue-400 text-sm">
+                                        <span class="font-bold">[METHODOLOGY_TIP]</span><br>
+                                        Use MITRE ATT&CK framework to structure your red team operations and reporting.
+                                    </p>
+                                </div>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Success Metrics</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Measuring red team effectiveness involves tracking detection rates, mean time to detection (MTTD), and organizational security posture improvements over time.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-green-400">15 min read • 3.7k views</span>
+                            <button onclick="toggleArticle(3)" class="text-green-400 hover:text-green-300 text-sm article-toggle">READ_MORE >></button>
+                        </div>
+                    </article>
+
+                    <article class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30 hover:border-yellow-500/50 transition-all article-card" data-article="4">
+                        <div class="text-yellow-500 text-xs sm:text-sm mb-2">[2023-12-10] PUBLISHED</div>
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-3">Cloud Security: Pentesting AWS Infrastructure</h3>
+                        <p class="text-gray-300 text-sm mb-4 article-preview">
+                            Practical guide to penetration testing AWS cloud environments. 
+                            Common misconfigurations, attack vectors, and security best practices.
+                        </p>
+                        
+                        <!-- Expanded Content -->
+                        <div class="article-content hidden">
+                            <div class="border-t border-green-500/30 pt-4 mb-4">
+                                <div class="text-green-400 text-sm mb-3">[ARTICLE_CONTENT] Loading...</div>
+                            </div>
+                            
+                            <div class="prose prose-invert max-w-none text-sm sm:text-base">
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Cloud Security Landscape</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Cloud infrastructure presents unique security challenges and opportunities. AWS environments require specialized knowledge and tools for effective penetration testing and security assessment.
+                                </p>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Common AWS Misconfigurations</h4>
+                                <p class="text-gray-300 mb-4">
+                                    The most frequently encountered security issues in AWS deployments include:
+                                </p>
+                                <ul class="text-gray-300 mb-4 ml-4 space-y-2">
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Overly permissive S3 bucket policies</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Excessive IAM permissions</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Unencrypted data at rest and in transit</li>
+                                    <li class="flex items-start"><span class="text-red-500 mr-2">•</span>Missing CloudTrail logging</li>
+                                </ul>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Penetration Testing Approach</h4>
+                                <p class="text-gray-300 mb-4">
+                                    AWS penetration testing requires understanding of cloud-specific attack vectors, including metadata service exploitation, role assumption attacks, and cross-account access vulnerabilities.
+                                </p>
+                                
+                                <div class="bg-black/50 border border-purple-500/30 p-4 rounded mb-4">
+                                    <p class="text-purple-400 text-sm">
+                                        <span class="font-bold">[CLOUD_TIP]</span><br>
+                                        Always obtain proper authorization before testing cloud infrastructure and follow AWS penetration testing guidelines.
+                                    </p>
+                                </div>
+                                
+                                <h4 class="text-green-400 font-bold text-base sm:text-lg mb-3">Security Best Practices</h4>
+                                <p class="text-gray-300 mb-4">
+                                    Implementing robust cloud security requires principle of least privilege, comprehensive monitoring, encryption everywhere, and regular security assessments using tools like AWS Security Hub and Config.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-green-400">22 min read • 5.2k views</span>
+                            <button onclick="toggleArticle(4)" class="text-green-400 hover:text-green-300 text-sm article-toggle">READ_MORE >></button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section portfolio-section border-t border-green-500/30">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">
+                    <span class="text-red-500">root@contact:</span><span class="text-green-400">~$ ./establish_connection.sh</span>
+                </h2>
+                <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12">
+                    <div class="terminal-glow bg-gray-900/50 p-6 sm:p-8 rounded border border-green-500/30">
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-6">[SECURE_COMMUNICATION_CHANNELS]</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-red-500 text-xl">📧</span>
+                                <div>
+                                    <p class="text-white font-semibold text-sm sm:text-base">Email</p>
+                                    <p class="text-gray-400 text-xs sm:text-sm">shahzaib.cyberanalyst@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-blue-500 text-xl">💼</span>
+                                <div>
+                                    <p class="text-white font-semibold text-sm sm:text-base">LinkedIn</p>
+                                    <p class="text-gray-400 text-xs sm:text-sm">/in/Socials</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-purple-500 text-xl">🐙</span>
+                                <div>
+                                    <p class="text-white font-semibold text-sm sm:text-base">GitHub</p>
+                                    <p class="text-gray-400 text-xs sm:text-sm">/in/Socials</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-green-500 text-xl">🔐</span>
+                                <div>
+                                    <p class="text-white font-semibold text-sm sm:text-base">Telegram</p>
+                                    <p class="text-gray-400 text-xs sm:text-sm">Available upon Request</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 sm:mt-8 p-3 sm:p-4 bg-black/50 rounded border border-red-500/30">
+                            <p class="text-red-400 text-xs sm:text-sm">
+                                <span class="font-bold">[SECURITY_NOTICE]</span><br>
+                                For sensitive communications, please use encrypted channels only. 
+                                Telegram available upon request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="terminal-glow bg-gray-900/50 p-6 sm:p-8 rounded border border-green-500/30">
+                        <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-6">[SEND_MESSAGE]</h3>
+                        <form onsubmit="sendMessage(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-green-400 text-sm mb-2">Name:</label>
+                                <input type="text" required class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base">
+                            </div>
+                            <div>
+                                <label class="block text-green-400 text-sm mb-2">Email:</label>
+                                <input type="email" required class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base">
+                            </div>
+                            <div>
+                                <label class="block text-green-400 text-sm mb-2">Subject:</label>
+                                <select class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base">
+                                    <option>Penetration Testing</option>
+                                    <option>Red Team Engagement</option>
+                                    <option>Security Consultation</option>
+                                    <option>Training & Workshops</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-green-400 text-sm mb-2">Message:</label>
+                                <textarea required rows="4" class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none resize-none text-sm sm:text-base"></textarea>
+                            </div>
+                            <button type="submit" class="w-full neon-border bg-transparent py-2 sm:py-3 rounded hover:bg-green-500/20 transition-all scan-line text-sm sm:text-base">
+                                TRANSMIT_MESSAGE.exe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-green-500/30 py-6 sm:py-8">
+            <div class="container mx-auto px-4 sm:px-6 text-center">
+                <div class="text-gray-400 text-xs sm:text-sm">
+                    <p class="mb-2">
+                        <span class="text-red-500">root@cybersec:</span><span class="text-green-400">~$</span> 
+                        echo "Stay secure, stay vigilant"
+                    </p>
+                    <p>© 2024 CyberSec Portfolio. All rights reserved. | Built with offensive security in mind.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Admin Login Screen -->
+    <div id="admin-login-screen" class="hidden fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="terminal-glow bg-black/90 p-6 sm:p-8 rounded-lg border border-green-500/50 max-w-md w-full">
+            <div class="text-center mb-6 sm:mb-8">
+                <div class="text-red-500 text-xl sm:text-2xl mb-2">⚠️ RESTRICTED ACCESS ⚠️</div>
+                <h1 class="text-xl sm:text-2xl font-bold text-green-400 mb-2">ADMIN TERMINAL</h1>
+                <p class="text-gray-400 text-sm">Portfolio Management System</p>
+            </div>
+            
+            <div class="text-left mb-4 sm:mb-6 text-xs sm:text-sm overflow-x-auto">
+                <span class="text-red-500">┌──(</span><span class="text-blue-400">admin</span><span class="text-white">㉿</span><span class="text-blue-400">cybersec</span><span class="text-red-500">)-[</span><span class="text-white">~/admin</span><span class="text-red-500">]</span>
+                <br>
+                <span class="text-red-500">└─$</span> <span class="typing-animation">authenticate</span>
+            </div>
+            
+            <form onsubmit="adminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-green-400 text-sm mb-2">Username:</label>
+                    <input type="text" id="admin-username" required class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base" placeholder="admin">
+                </div>
+                <div>
+                    <label class="block text-green-400 text-sm mb-2">Password:</label>
+                    <input type="password" id="admin-password" required class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full neon-border bg-transparent py-2 sm:py-3 rounded hover:bg-green-500/20 transition-all scan-line text-sm sm:text-base">
+                    ACCESS_GRANTED.exe
+                </button>
+            </form>
+            
+            
+            
+            <button onclick="hideAdminLogin()" class="mt-4 w-full text-gray-400 hover:text-white text-sm">
+                [CANCEL] Return to Portfolio
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="hidden">
+        <!-- Header -->
+        <header class="bg-black/90 backdrop-blur-sm border-b border-green-500/30 sticky top-0 z-50">
+            <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                        <div class="text-lg sm:text-xl font-bold text-green-400">
+                            <span class="text-red-500">root@</span>admin<span class="text-green-400">:~$</span>
+                        </div>
+                        <div class="text-xs sm:text-sm text-gray-400">Portfolio Management System</div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
+                        <button onclick="showPortfolio()" class="text-blue-400 hover:text-blue-300">
+                            [VIEW PORTFOLIO]
+                        </button>
+                        <div class="text-green-400">
+                            <span class="text-white">Status:</span> <span class="text-green-400">ONLINE</span>
+                        </div>
+                        <button onclick="adminLogout()" class="text-red-400 hover:text-red-300">
+                            [LOGOUT]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bg-gray-900/50 border-b border-green-500/20 overflow-x-auto">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="flex space-x-4 sm:space-x-8 min-w-max">
+                    <button onclick="showAdminSection('dashboard')" class="admin-nav-btn py-3 sm:py-4 px-2 text-green-400 border-b-2 border-green-400 text-sm sm:text-base whitespace-nowrap">
+                        Dashboard
+                    </button>
+                    <button onclick="showAdminSection('articles')" class="admin-nav-btn py-3 sm:py-4 px-2 text-gray-400 hover:text-green-400 border-b-2 border-transparent text-sm sm:text-base whitespace-nowrap">
+                        Articles
+                    </button>
+                    <button onclick="showAdminSection('add-article')" class="admin-nav-btn py-3 sm:py-4 px-2 text-gray-400 hover:text-green-400 border-b-2 border-transparent text-sm sm:text-base whitespace-nowrap">
+                        Add Article
+                    </button>
+                    <button onclick="showAdminSection('files')" class="admin-nav-btn py-3 sm:py-4 px-2 text-gray-400 hover:text-green-400 border-b-2 border-transparent text-sm sm:text-base whitespace-nowrap">
+                        Files
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard Section -->
+        <section id="admin-dashboard-section" class="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+            <h2 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">
+                <span class="text-red-500">admin@dashboard:</span><span class="text-green-400">~$ system_status</span>
+            </h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30">
+                    <div class="text-green-400 text-xs sm:text-sm mb-2">[ARTICLES_COUNT]</div>
+                    <div class="text-2xl sm:text-3xl font-bold text-white mb-2" id="admin-articles-count">4</div>
+                    <div class="text-gray-400 text-xs sm:text-sm">Total Articles</div>
+                </div>
+                
+                <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-blue-500/30">
+                    <div class="text-blue-400 text-xs sm:text-sm mb-2">[VIEWS_TOTAL]</div>
+                    <div class="text-2xl sm:text-3xl font-bold text-white mb-2">15.3k</div>
+                    <div class="text-gray-400 text-xs sm:text-sm">Total Views</div>
+                </div>
+                
+                <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-yellow-500/30 sm:col-span-2 lg:col-span-1">
+                    <div class="text-yellow-400 text-xs sm:text-sm mb-2">[LAST_UPDATE]</div>
+                    <div class="text-2xl sm:text-3xl font-bold text-white mb-2">2h</div>
+                    <div class="text-gray-400 text-xs sm:text-sm">Hours Ago</div>
+                </div>
+            </div>
+
+            <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30">
+                <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-4">[RECENT_ACTIVITY]</h3>
+                <div class="space-y-3 max-h-64 overflow-y-auto" id="admin-activity-log">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-700 gap-1">
+                        <span class="text-white text-sm">Article "Advanced Persistent Threats" published</span>
+                        <span class="text-gray-400 text-xs">2 hours ago</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-700 gap-1">
+                        <span class="text-white text-sm">Article "Zero-Day Exploitation" updated</span>
+                        <span class="text-gray-400 text-xs">1 day ago</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-700 gap-1">
+                        <span class="text-white text-sm">New file uploaded: security-diagram.png</span>
+                        <span class="text-gray-400 text-xs">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Section -->
+        <section id="admin-articles-section" class="hidden container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+            <h2 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">
+                <span class="text-red-500">admin@articles:</span><span class="text-green-400">~$ ls -la</span>
+            </h2>
+            
+            <div class="terminal-glow bg-gray-900/50 rounded border border-green-500/30 overflow-hidden">
+                <div class="p-4 border-b border-green-500/20">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <h3 class="text-green-400 font-bold text-base sm:text-lg">Article Management</h3>
+                        <button onclick="showAdminSection('add-article')" class="neon-border bg-transparent px-3 sm:px-4 py-2 rounded hover:bg-green-500/20 transition-all text-xs sm:text-sm">
+                            + NEW ARTICLE
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[600px]">
+                        <thead class="bg-black/50">
+                            <tr>
+                                <th class="text-left p-3 sm:p-4 text-green-400 text-xs sm:text-sm">Title</th>
+                                <th class="text-left p-3 sm:p-4 text-green-400 text-xs sm:text-sm">Date</th>
+                                <th class="text-left p-3 sm:p-4 text-green-400 text-xs sm:text-sm">Views</th>
+                                <th class="text-left p-3 sm:p-4 text-green-400 text-xs sm:text-sm">Status</th>
+                                <th class="text-left p-3 sm:p-4 text-green-400 text-xs sm:text-sm">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-articles-table">
+                            <tr class="border-b border-gray-700 hover:bg-gray-800/50">
+                                <td class="p-3 sm:p-4 text-white text-xs sm:text-sm">Advanced Persistent Threats: Detection and Mitigation</td>
+                                <td class="p-3 sm:p-4 text-gray-400 text-xs sm:text-sm">2024-01-15</td>
+                                <td class="p-3 sm:p-4 text-gray-400 text-xs sm:text-sm">2.3k</td>
+                                <td class="p-3 sm:p-4"><span class="text-green-400 bg-green-900/30 px-2 py-1 rounded text-xs">PUBLISHED</span></td>
+                                <td class="p-3 sm:p-4">
+                                    <button onclick="editArticle(1)" class="text-blue-400 hover:text-blue-300 mr-2 sm:mr-3 text-xs">EDIT</button>
+                                    <button onclick="deleteArticle(1)" class="text-red-400 hover:text-red-300 text-xs">DELETE</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-gray-800/50">
+                                <td class="p-3 sm:p-4 text-white text-xs sm:text-sm">Zero-Day Exploitation in Modern Web Applications</td>
+                                <td class="p-3 sm:p-4 text-gray-400 text-xs sm:text-sm">2024-01-08</td>
+                                <td class="p-3 sm:p-4 text-gray-400 text-xs sm:text-sm">4.1k</td>
+                                <td class="p-3 sm:p-4"><span class="text-green-400 bg-green-900/30 px-2 py-1 rounded text-xs">PUBLISHED</span></td>
+                                <td class="p-3 sm:p-4">
+                                    <button onclick="editArticle(2)" class="text-blue-400 hover:text-blue-300 mr-2 sm:mr-3 text-xs">EDIT</button>
+                                    <button onclick="deleteArticle(2)" class="text-red-400 hover:text-red-300 text-xs">DELETE</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-gray-800/50">
+                                <td class="p-3 sm:p-4 text-white text-xs sm:text-sm">Building an Effective Red Team Program</td>
+                                <td class="p-3 sm:p-4 text-gray-400 text-xs sm:text-sm">2023-12-22</td>
+                                <td class="p-3 sm:p-4 text-gray-400 text-xs sm:text-sm">3.7k</td>
+                                <td class="p-3 sm:p-4"><span class="text-yellow-400 bg-yellow-900/30 px-2 py-1 rounded text-xs">DRAFT</span></td>
+                                <td class="p-3 sm:p-4">
+                                    <button onclick="editArticle(3)" class="text-blue-400 hover:text-blue-300 mr-2 sm:mr-3 text-xs">EDIT</button>
+                                    <button onclick="deleteArticle(3)" class="text-red-400 hover:text-red-300 text-xs">DELETE</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-700 hover:bg-gray-800/50">
+                                <td class="p-3 sm:p-4 text-white text-xs sm:text-sm">Cloud Security: Pentesting AWS Infrastructure</td>
+                                <td class="p-3 sm:p-4 text-gray-400 text-xs sm:text-sm">2023-12-10</td>
+                                <td class="p-3 sm:p-4 text-gray-400 text-xs sm:text-sm">5.2k</td>
+                                <td class="p-3 sm:p-4"><span class="text-green-400 bg-green-900/30 px-2 py-1 rounded text-xs">PUBLISHED</span></td>
+                                <td class="p-3 sm:p-4">
+                                    <button onclick="editArticle(4)" class="text-blue-400 hover:text-blue-300 mr-2 sm:mr-3 text-xs">EDIT</button>
+                                    <button onclick="deleteArticle(4)" class="text-red-400 hover:text-red-300 text-xs">DELETE</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Article Section -->
+        <section id="admin-add-article-section" class="hidden container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+            <h2 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">
+                <span class="text-red-500">admin@articles:</span><span class="text-green-400">~$ create_new</span>
+            </h2>
+            
+            <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 lg:p-8 rounded border border-green-500/30">
+                <form onsubmit="saveArticle(event)" class="space-y-4 sm:space-y-6">
+                    <div class="grid lg:grid-cols-2 gap-4 sm:gap-6">
+                        <div>
+                            <label class="block text-green-400 text-sm mb-2">Article Title:</label>
+                            <input type="text" id="article-title" required class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base" placeholder="Enter article title...">
+                        </div>
+                        <div>
+                            <label class="block text-green-400 text-sm mb-2">Status:</label>
+                            <select id="article-status" class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base">
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-green-400 text-sm mb-2">Tags (comma separated):</label>
+                        <input type="text" id="article-tags" class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base" placeholder="cybersecurity, pentesting, red team...">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-green-400 text-sm mb-2">Article Content:</label>
+                        <textarea rows="8" id="article-content" required class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none resize-none text-sm sm:text-base" placeholder="Write your article content here..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-green-400 text-sm mb-2">Featured Image:</label>
+                        <input type="file" accept="image/*" class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base">
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button type="submit" class="neon-border bg-transparent px-6 sm:px-8 py-2 sm:py-3 rounded hover:bg-green-500/20 transition-all scan-line text-sm sm:text-base">
+                            PUBLISH_ARTICLE.exe
+                        </button>
+                        <button type="button" onclick="previewArticle()" class="border border-blue-500/50 bg-transparent px-6 sm:px-8 py-2 sm:py-3 rounded hover:bg-blue-500/20 transition-all text-blue-400 text-sm sm:text-base">
+                            PREVIEW
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Files Section -->
+        <section id="admin-files-section" class="hidden container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+            <h2 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">
+                <span class="text-red-500">admin@files:</span><span class="text-green-400">~$ ls -la uploads/</span>
+            </h2>
+            
+            <div class="grid lg:grid-cols-2 gap-6 sm:gap-8">
+                <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30">
+                    <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-4">[FILE_UPLOAD]</h3>
+                    <form onsubmit="uploadFile(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-green-400 text-sm mb-2">Select File:</label>
+                            <input type="file" required class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base">
+                        </div>
+                        <div>
+                            <label class="block text-green-400 text-sm mb-2">Description:</label>
+                            <input type="text" class="w-full bg-black border border-green-500/50 rounded px-3 sm:px-4 py-2 text-white focus:border-green-400 focus:outline-none text-sm sm:text-base" placeholder="File description...">
+                        </div>
+                        <button type="submit" class="w-full neon-border bg-transparent py-2 sm:py-3 rounded hover:bg-green-500/20 transition-all scan-line text-sm sm:text-base">
+                            UPLOAD_FILE.exe
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="terminal-glow bg-gray-900/50 p-4 sm:p-6 rounded border border-green-500/30">
+                    <h3 class="text-green-400 font-bold text-lg sm:text-xl mb-4">[UPLOADED_FILES]</h3>
+                    <div class="space-y-3 max-h-64 overflow-y-auto">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-700 gap-2">
+                            <div>
+                                <div class="text-white text-sm">security-diagram.png</div>
+                                <div class="text-gray-400 text-xs">2.3 MB • 2 days ago</div>
+                            </div>
+                            <button onclick="deleteFile('security-diagram.png')" class="text-red-400 hover:text-red-300 text-xs self-start sm:self-center">DELETE</button>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-700 gap-2">
+                            <div>
+                                <div class="text-white text-sm">network-topology.jpg</div>
+                                <div class="text-gray-400 text-xs">1.8 MB • 1 week ago</div>
+                            </div>
+                            <button onclick="deleteFile('network-topology.jpg')" class="text-red-400 hover:text-red-300 text-xs self-start sm:self-center">DELETE</button>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 border-b border-gray-700 gap-2">
+                            <div>
+                                <div class="text-white text-sm">vulnerability-report.pdf</div>
+                                <div class="text-gray-400 text-xs">5.1 MB • 2 weeks ago</div>
+                            </div>
+                            <button onclick="deleteFile('vulnerability-report.pdf')" class="text-red-400 hover:text-red-300 text-xs self-start sm:self-center">DELETE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.textContent = '✕';
+            } else {
+                menu.classList.add('hidden');
+                icon.textContent = '☰';
+            }
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Update scroll progress and navigation active states
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+            
+            // Show/hide scroll to top button
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            if (scrollTop > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+            
+            // Update active navigation link
+            updateActiveNavLink();
+        }
+
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
+            const sections = ['hero', 'about', 'projects', 'articles', 'contact'];
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        currentSection = sectionId === 'hero' ? '' : sectionId;
+                    }
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === `#${currentSection}` || (currentSection === '' && href === '#about')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Article toggle functionality
+        function toggleArticle(articleId) {
+            const article = document.querySelector(`[data-article="${articleId}"]`);
+            const content = article.querySelector('.article-content');
+            const button = article.querySelector('.article-toggle');
+            const preview = article.querySelector('.article-preview');
+            
+            if (content.classList.contains('hidden')) {
+                // Expand article
+                content.classList.remove('hidden');
+                preview.classList.add('hidden');
+                button.textContent = '<< COLLAPSE';
+                
+                // Smooth scroll to article top
+                article.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+                
+                // Add expanded styling
+                article.classList.add('lg:col-span-2');
+                article.style.maxWidth = 'none';
+                
+            } else {
+                // Collapse article
+                content.classList.add('hidden');
+                preview.classList.remove('hidden');
+                button.textContent = 'READ_MORE >>';
+                
+                // Remove expanded styling
+                article.classList.remove('lg:col-span-2');
+                article.style.maxWidth = '';
+            }
+        }
+
+        // Admin functionality
+        let isAdminMode = false;
+
+        function showAdminLogin() {
+            document.getElementById('admin-login-screen').classList.remove('hidden');
+        }
+
+        function hideAdminLogin() {
+            document.getElementById('admin-login-screen').classList.add('hidden');
+        }
+
+        function adminLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+            
+            if (username === 'CyberMentor' && password === 'IamTheAdmin') {
+                isAdminMode = true;
+                document.getElementById('admin-login-screen').classList.add('hidden');
+                document.getElementById('portfolio-section').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                showAdminSection('dashboard');
+            } else {
+                alert('Invalid credentials. Try admin/password');
+            }
+        }
+
+        function adminLogout() {
+            isAdminMode = false;
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('portfolio-section').classList.remove('hidden');
+        }
+
+        function showPortfolio() {
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('portfolio-section').classList.remove('hidden');
+        }
+
+        function showAdminSection(section) {
+            // Hide all sections
+            document.querySelectorAll('[id^="admin-"][id$="-section"]').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(`admin-${section}-section`).classList.remove('hidden');
+            
+            // Update navigation
+            document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+                btn.classList.remove('text-green-400', 'border-green-400');
+                btn.classList.add('text-gray-400', 'border-transparent');
+            });
+            
+            event.target.classList.remove('text-gray-400', 'border-transparent');
+            event.target.classList.add('text-green-400', 'border-green-400');
+        }
+
+        function editArticle(id) {
+            alert(`Editing article ${id} - Feature coming soon!`);
+        }
+
+        function deleteArticle(id) {
+            if (confirm('Are you sure you want to delete this article?')) {
+                alert(`Article ${id} deleted successfully!`);
+            }
+        }
+
+        function saveArticle(event) {
+            event.preventDefault();
+            const title = document.getElementById('article-title').value;
+            const status = document.getElementById('article-status').value;
+            const content = document.getElementById('article-content').value;
+            
+            if (title && content) {
+                alert(`Article "${title}" saved as ${status}!`);
+                // Reset form
+                event.target.reset();
+            }
+        }
+
+        function previewArticle() {
+            const title = document.getElementById('article-title').value;
+            const content = document.getElementById('article-content').value;
+            
+            if (title && content) {
+                alert(`Preview: ${title}\n\n${content.substring(0, 100)}...`);
+            } else {
+                alert('Please fill in title and content first.');
+            }
+        }
+
+        function uploadFile(event) {
+            event.preventDefault();
+            alert('File uploaded successfully!');
+            event.target.reset();
+        }
+
+        function deleteFile(filename) {
+            if (confirm(`Delete ${filename}?`)) {
+                alert(`${filename} deleted successfully!`);
+            }
+        }
+
+        function sendMessage(event) {
+            event.preventDefault();
+            alert('Message sent successfully! I will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Add smooth scrolling for navigation links and scroll tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Initialize scroll tracking
+            updateScrollProgress();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', updateScrollProgress);
+            
+            // Add resize event listener to recalculate on window resize
+            window.addEventListener('resize', updateScrollProgress);
+        });
+
+        // Close mobile menu when clicking on links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    document.getElementById('menu-icon').textContent = '☰';
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981da25ae2d8a75a',t:'MTc1ODMzMjYzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
